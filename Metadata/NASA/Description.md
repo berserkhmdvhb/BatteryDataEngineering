@@ -10,6 +10,7 @@ Repeated charge and discharge cycles result in accelerated aging of the batterie
 - Charging was carried out in a constant current (CC) mode at 1.5A until the battery voltage reached 4.2V and then continued in a constant voltage (CV) mode until the charge current dropped to 20mA.
 
 ### Fields
+
 Voltage_measured: Battery terminal voltage (Volts)
 Current_measured: Battery output current (Amps)
 Temperature_measured: Battery temperature (degree C)
@@ -24,6 +25,7 @@ Time: Time vector for the cycle (secs)
 - Discharge was carried out at a constant current (CC) level of 1-4 A until the battery voltage fell to values such 2.7V, 2.5V, 2.2V and 2.5V.
 
 ### Fields
+
 - Voltage_measured: Battery terminal voltage (Volts)
 - Current_measured: Battery output current (Amps)
 - Temperature_measured: Battery temperature (degree C)
@@ -39,6 +41,7 @@ Time: Time vector for the cycle (secs)
 - Impedance measurement was carried out through an electrochemical impedance spectroscopy (EIS) frequency sweep from 0.1Hz to 5kHz.
 
 ### Fields
+
 - Sense_current: Current in sense branch (Amps)
 - Battery_current: Current in battery branch (Amps)
 - Current_ratio: Ratio of the above currents
