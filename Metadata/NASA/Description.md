@@ -37,8 +37,6 @@ Repeated charge and discharge cycles result in accelerated aging of the batterie
 - Voltage_load: Voltage measured at load (Volts)
 - Time: Time vector for the cycle (secs)
 - Capacity: Battery capacity (Ahr) for discharge till 2.7V
-- Discharge profiles were different from battery to battery.
-- Discharge was carried out at a constant current (CC) level of 1-4 A until the battery voltage fell to values such 2.7V, 2.5V, 2.2V and 2.5V.
 
 ## Impedance:
 
