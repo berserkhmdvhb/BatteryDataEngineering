@@ -2,6 +2,7 @@ This data set has been collected from a custom built battery prognostics testbed
 Li-ion batteries were run through 3 different operational profiles (charge, discharge and Electrochemical Impedance Spectroscopy) at different temperatures. Discharges were carried out at different current load levels until the battery voltage fell to preset voltage thresholds. 
 Some of these thresholds were lower than that recommended by the OEM (2.7 V) in order to induce deep discharge aging effects. 
 Repeated charge and discharge cycles result in accelerated aging of the batteries. The experiments were stopped when the batteries reached the end-of-life (EOL) criteria of 30% fade in rated capacity (from 2 Ah to 1.4 Ah).
+
 [Reference of dataset](https://data.nasa.gov/dataset/Li-ion-Battery-Aging-Datasets/uj5r-zjdb)
 [Link to cleaned dataset](https://www.kaggle.com/datasets/patrickfleith/nasa-battery-dataset)
 
