@@ -4,6 +4,7 @@ Some of these thresholds were lower than that recommended by the OEM (2.7 V) in 
 Repeated charge and discharge cycles result in accelerated aging of the batteries. The experiments were stopped when the batteries reached the end-of-life (EOL) criteria of 30% fade in rated capacity (from 2 Ah to 1.4 Ah).
 
 [Reference of dataset](https://data.nasa.gov/dataset/Li-ion-Battery-Aging-Datasets/uj5r-zjdb)
+
 [Link to cleaned dataset](https://www.kaggle.com/datasets/patrickfleith/nasa-battery-dataset)
 
 # Charge, Discharge, Impedence
