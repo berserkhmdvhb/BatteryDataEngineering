@@ -4,7 +4,7 @@ Some of these thresholds were lower than that recommended by the OEM (2.7 V) in 
 Repeated charge and discharge cycles result in accelerated aging of the batteries. The experiments were stopped when the batteries reached the end-of-life (EOL) criteria of 30% fade in rated capacity (from 2 Ah to 1.4 Ah).
 
 # Charge, Discharge, Impedence
-## Charge profile:
+## Charge:
 
 - The charge profile for all battery tests seems to be identifical.
 - Charging was carried out in a constant current (CC) mode at 1.5A until the battery voltage reached 4.2V and then continued in a constant voltage (CV) mode until the charge current dropped to 20mA.
@@ -54,7 +54,9 @@ Time: Time vector for the cycle (secs)
 The experiments were stopped when the batteries reached a given end-of-life (EOL) criteria: for example 30% fade in rated capacity (from 2Ahr to 1.4Ahr). Other stopping criteria were used such as 20% fade in rated capacity. Note that for batteries 49,50,51,52, the experiments were not stop due to battery EOL but because the software has crashed
 
 # Intended Use
-This dataset can be used for the prediction of both:
+
+The data sets can serve for a variety of purposes. Because these are essentially a large number of Run-to-Failure time series, the data can be set for development of prognostic algorithms. In particular, due to the differences in depth-of-discharge (DOD), the duration of rest periods and intrinsic variability, no two cells have the same state-of-life (SOL) at the same cycle index. The aim is to be able to manage this uncertainty, which is representative of actual usage, and make reliable predictions of Remaining Useful Life (RUL) in both the End-of-Discharge (EOD) and End-of-Life (EOL) contexts.
+In summary, the dataset can be used for predicting:
 
 - remaining charge (for a given discharge cycle) and,
 - remaining useful life (RUL).
