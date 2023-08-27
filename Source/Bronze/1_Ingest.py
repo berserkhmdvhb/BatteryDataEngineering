@@ -21,6 +21,16 @@ import sys
 
 # COMMAND ----------
 
+schema = "LION"
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --CREATE SCHEMA LION
+# MAGIC
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC # Import from Github
 
@@ -130,12 +140,45 @@ for i in range(3, len(directories)):
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC --CREATE SCHEMA LION
+batteries_impedance.columns
 
 # COMMAND ----------
 
-schema = "LION"
+batteries_impedance = batteries_impedance.select(col("Sense_current").alias("SenseCurrent"), 
+                           col("Battery_current").alias("BatteryCurrent"), 
+                           col("Current_ratio").alias("CurrentRatio"), 
+                           col("Battery_impedance").alias("BatteryImpedance"), 
+                           col("Rectified_Impedance").alias("RectifiedImpedance"),
+                           "Profile", 
+                           "Idx", 
+                           col("file").alias("FileName"), 
+                           col("ambient_temperature").alias("AmbientTemperature")
+                           )
+
+batteries_charge = batteries_charge.select(col("Voltage_measured").alias("Voltage"), 
+                           col("Current_measured").alias("Current"), 
+                           col("Temperature_measured").alias("Temperature"), 
+                           col("Current_charge").alias("CurrentCharge"), 
+                           col("Voltage_charge").alias("VoltageCharge"),
+                           col("Time").alias("Duration"), 
+                           "Profile", 
+                           "Idx", 
+                           col("file").alias("FileName"), 
+                           col("ambient_temperature").alias("AmbientTemperature")
+                           )
+
+batteries_discharge = batteries_discharge.select(col("Voltage_measured").alias("Voltage"), 
+                           col("Current_measured").alias("Current"), 
+                           col("Temperature_measured").alias("Temperature"), 
+                           col("Current_load").alias("CurrentLoad"), 
+                           col("Voltage_load").alias("VoltageLoad"),
+                           col("Time").alias("Duration"), 
+                           "Profile", 
+                           "Idx", 
+                           col("file").alias("FileName"), 
+                           col("ambient_temperature").alias("AmbientTemperature")
+                           )
+
 
 # COMMAND ----------
 
@@ -150,7 +193,7 @@ del batteries_impedance, batteries_charge, batteries_discharge
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## Stanford
+# MAGIC ## 2. Stanford
 
 # COMMAND ----------
 
@@ -208,7 +251,34 @@ for i in range(0, len(temperatures)):
                     .withColumn("file", lit(file_names[j]))
                     )
             LFP_df = LFP_df.union(df_temp)
-    
+
+# COMMAND ----------
+
+LFP_df = LFP_df.select(col("Date_Time").alias("Time"), 
+              col("Test_Time(s)").alias("Test_Time"), 
+              col("Step_Time(s)").alias("Step_Time"),
+              col("Step_Index").alias("StepIndex"),
+              col("Voltage(V)").alias("Voltage"), 
+              col("Current(A)").alias("Current"),
+              col("Surface_Temp(degC)").alias("SurfaceTemperature"),
+              "Temperature", 
+              "Idx", 
+              col("file").alias("FileName")             
+              )
+
+# COMMAND ----------
+
+LFP_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NCA_batteries_discharge')
+
+# COMMAND ----------
+
+base_url = "https://github.com/berserkhmdvhb/BatteryDatasets/blob/main/Datasets/Stanford/galvanostatic_discharge_test/"
+repo = "https://raw.githubusercontent.com/berserkhmdvhb/BatteryDatasets/main/"
+response = requests.get(base_url)
+
+directories = response.json()['payload']['tree']['items']
+dirs = [repo + directories[i]['path'] for i in range(len(directories) - 1)]
+manufacturers = [directories[i]['name'] for i in range(len(directories) -1)]
 
 # COMMAND ----------
 
@@ -238,6 +308,7 @@ emptyRDD = spark.sparkContext.emptyRDD()
 NCA_df = spark.createDataFrame(emptyRDD, NCA_df.schema)
 
 for i in range(0, len(temperatures)):
+    print(temperatures[i])
     NCA_temp_url = NCA_url + temperatures[i] + "/"
     response = requests.get(NCA_temp_url)
     directories = response.json()['payload']['tree']['items']
@@ -255,11 +326,34 @@ for i in range(0, len(temperatures)):
                     .withColumn("file", lit(file_names[j]))
                     )
             NCA_df = NCA_df.union(df_temp)
-    
+
+# COMMAND ----------
+
+NCA_df = NCA_df.select(col("Date_Time").alias("Time"), 
+              col("Test_Time(s)").alias("Test_Time"), 
+              col("Step_Time(s)").alias("Step_Time"),
+              col("Step_Index").alias("StepIndex"),
+              col("Voltage(V)").alias("Voltage"), 
+              col("Current(A)").alias("Current"),
+              col("Surface_Temp(degC)").alias("SurfaceTemperature"),
+              "Temperature", 
+              "Idx", 
+              col("file").alias("FileName")             
+              )
 
 # COMMAND ----------
 
 NCA_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NCA_batteries_discharge')
+
+# COMMAND ----------
+
+base_url = "https://github.com/berserkhmdvhb/BatteryDatasets/blob/main/Datasets/Stanford/galvanostatic_discharge_test/"
+repo = "https://raw.githubusercontent.com/berserkhmdvhb/BatteryDatasets/main/"
+response = requests.get(base_url)
+
+directories = response.json()['payload']['tree']['items']
+dirs = [repo + directories[i]['path'] for i in range(len(directories) - 1)]
+manufacturers = [directories[i]['name'] for i in range(len(directories) -1)]
 
 # COMMAND ----------
 
@@ -289,6 +383,7 @@ emptyRDD = spark.sparkContext.emptyRDD()
 NMC_df = spark.createDataFrame(emptyRDD, NMC_df.schema)
 
 for i in range(0, len(temperatures)):
+    print(temperatures[i])
     NMC_temp_url = NMC_url + temperatures[i] + "/"
     response = requests.get(NMC_temp_url)
     directories = response.json()['payload']['tree']['items']
@@ -310,8 +405,18 @@ for i in range(0, len(temperatures)):
 
 # COMMAND ----------
 
-NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NMC_batteries_discharge')
+NMC_df = NMC_df.select(col("Date_Time").alias("Time"), 
+              col("Test_Time(s)").alias("Test_Time"), 
+              col("Step_Time(s)").alias("Step_Time"),
+              col("Step_Index").alias("StepIndex"),
+              col("Voltage(V)").alias("Voltage"), 
+              col("Current(A)").alias("Current"),
+              col("Surface_Temp(degC)").alias("SurfaceTemperature"),
+              "Temperature", 
+              "Idx", 
+              col("file").alias("FileName")             
+              )
 
 # COMMAND ----------
 
-
+NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NMC_batteries_discharge')
