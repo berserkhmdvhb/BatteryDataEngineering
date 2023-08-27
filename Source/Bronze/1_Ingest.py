@@ -155,9 +155,9 @@ batteries_impedance = batteries_impedance.select(col("Sense_current").alias("Sen
                            col("ambient_temperature").alias("AmbientTemperature")
                            )
 
-batteries_charge = batteries_charge.select(col("Voltage_measured").alias("Voltage"), 
-                           col("Current_measured").alias("Current"), 
-                           col("Temperature_measured").alias("Temperature"), 
+batteries_charge = batteries_charge.select(col("Voltage_measured").alias("VoltageMeasured"), 
+                           col("Current_measured").alias("CurrentMeasured"), 
+                           col("Temperature_measured").alias("TemperatureMeasured"), 
                            col("Current_charge").alias("CurrentCharge"), 
                            col("Voltage_charge").alias("VoltageCharge"),
                            col("Time").alias("Duration"), 
@@ -167,9 +167,9 @@ batteries_charge = batteries_charge.select(col("Voltage_measured").alias("Voltag
                            col("ambient_temperature").alias("AmbientTemperature")
                            )
 
-batteries_discharge = batteries_discharge.select(col("Voltage_measured").alias("Voltage"), 
-                           col("Current_measured").alias("Current"), 
-                           col("Temperature_measured").alias("Temperature"), 
+batteries_discharge = batteries_discharge.select(col("Voltage_measured").alias("VoltageMeasured"), 
+                           col("Current_measured").alias("CurrentMeasured"), 
+                           col("Temperature_measured").alias("TemperatureMeasured"), 
                            col("Current_load").alias("CurrentLoad"), 
                            col("Voltage_load").alias("VoltageLoad"),
                            col("Time").alias("Duration"), 
@@ -268,7 +268,7 @@ LFP_df = LFP_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-LFP_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NCA_batteries_discharge')
+LFP_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_LFP_batteries_discharge')
 
 # COMMAND ----------
 
@@ -321,7 +321,7 @@ for i in range(0, len(temperatures)):
             path = SparkFiles.get(file_names[j])
             df_temp = (spark.createDataFrame(pd.read_excel(path))
                     .withColumn("Manufacturer", lit(manufacturers[1]))
-                    .withColumn("Temperature", lit(temperatures[j]))
+                    .withColumn("Temperature", lit(temperatures[i]))
                     .withColumn("Idx", lit(int(f"{i}" + f"{j}")))
                     .withColumn("file", lit(file_names[j]))
                     )
@@ -420,3 +420,33 @@ NMC_df = NMC_df.select(col("Date_Time").alias("Time"),
 # COMMAND ----------
 
 NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NMC_batteries_discharge')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.NASA_batteries_impedance
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.NASA_batteries_charge
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.NASA_batteries_discharge
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.Stanford_LFP_batteries_discharge
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.Stanford_NCA_batteries_discharge
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE TABLE LION.Stanford_NMC_batteries_discharge
