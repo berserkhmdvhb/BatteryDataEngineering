@@ -39,29 +39,13 @@ classDef deltaBlock fill:#85C1E9,stroke:#000000,stroke-width:2px
 classDef viewBlock fill:#85C1E9
 classDef sparkdfBlock fill:#7FFFD4
 classDef title fill:#FFFFFF
-A["<img src='https://cdn3.iconfinder.com/data/icons/bigdata-1/128/bigdata-Color-16-512.png'; width='170' />" <br/>ON-PREMISE Sources: <br/>]
+A["<img src='https://cdn3.iconfinder.com/data/icons/bigdata-1/128/bigdata-Color-16-512.png'; width='170' />" <br/>Github Sources]
 A --> I{"<img src='https://cdn3.iconfinder.com/data/icons/server-rack/64/cloud-512.png'; width='130' />" <br/> Ingestion}
-I --> B1[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 1)]
-I --> B2[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 2)]
-I --> B3[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 3)]
-B1 --> E{"<img src='https://cdn3.iconfinder.com/data/icons/big-data-2-4/504/Data-cleaning-broom-dusting-delete-256.png'; width='130' />" <br/>Data Cleaning}
-B2 --> E
-B3 --> E
-E --> S1[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 1)]
-E --> S2[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 2)]
-E --> S3[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 3)]
-S1 --> P{"<img src='https://cdn3.iconfinder.com/data/icons/procurement-process-2/100/three_way_matching_process_warehouse_purchase_requisition-512.png'; width='130' />" <br/> Matching Algorithm</br>/Entity Resolution}
-S2 --> P
-S3 --> P
-P --> CLS{"<img src='https://cdn4.iconfinder.com/data/icons/artificial-intelligence-line-filled/123/Big_Data__Analysis__clustering__data__process__system-512.png'; width='130' />" <br/> Cluster Attribution}
-CLS --> S4[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 4)]
-CLS --> S5[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 5)]
-CLS --> S6[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Silver Table 6)]
-S4 --> SBI{"<img src='https://cdn0.iconfinder.com/data/icons/flat-design-database-set-4/24/table-field-256.png'; width='130' />" <br/> Select Best Info</br>/Conflict Handling}
-S5 --> SBI
-S6 --> SBI
-SBI --> Q[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Gold Table)] 
-Q --> GEMS[("<img src='https://cdn1.iconfinder.com/data/icons/business-and-management-56/24/IP_01_-_Business_and_Management-14-256.png'; width='80' />" <br/> GEMS)]
+I --> E{"<img src='https://cdn3.iconfinder.com/data/icons/big-data-2-4/504/Data-cleaning-broom-dusting-delete-256.png'; width='130' />" <br/> Data Cleaning}
+E --> M{"<img src='https://cdn3.iconfinder.com/data/icons/procurement-process-2/100/three_way_matching_process_warehouse_purchase_requisition-512.png'; width='130' />" <br/> Matching Algorithm</br>/Entity Resolution}
+M --> CLS{"<img src='https://cdn4.iconfinder.com/data/icons/artificial-intelligence-line-filled/123/Big_Data__Analysis__clustering__data__process__system-512.png'; width='130' />" <br/> Cluster Attribution}
+CLS --> SBI{"<img src='https://cdn0.iconfinder.com/data/icons/flat-design-database-set-4/24/table-field-256.png'; width='130' />" <br/> Select Best Info</br>/Conflict Handling}
+SBI--> GEMS[("<img src='https://cdn1.iconfinder.com/data/icons/business-and-management-56/24/IP_01_-_Business_and_Management-14-256.png'; width='80' />" <br/> GEMS)]
 class T title
 class S1 silverBlock
 class S2 silverBlock
@@ -80,4 +64,3 @@ class SD sparkdfBlock
 class Q goldBlock
 class GEMS goldBlock;
 ```
-
