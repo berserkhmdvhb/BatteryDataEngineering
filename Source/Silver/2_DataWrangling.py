@@ -1,4 +1,9 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Setup and Imports
+
+# COMMAND ----------
+
 from pyspark.sql.functions import col, regexp_replace, regexp_extract, split, when, concat_ws, udf, size, expr, trim, lit, element_at, to_date, date_format, lower, length, to_timestamp, monotonically_increasing_id, expr, atan2, sqrt
 
 from pyspark.sql.types import ArrayType, FloatType, DoubleType, StringType, BooleanType, IntegerType, LongType, TimestampType, DateType
@@ -30,20 +35,13 @@ nasa_charge = spark.table(f"{schema}.Bronze_NASA_charge")
 nasa_discharge = spark.table(f"{schema}.Bronze_NASA_discharge")
 nasa_impedance = spark.table(f"{schema}.Bronze_NASA_impedance")
 
-stanford_discharge_LFP = spark.table(f"{schema}.Stanford_LFP_batteries_discharge")
-stanford_discharge_NCA = spark.table(f"{schema}.Stanford_NCA_batteries_discharge")
-stanford_discharge_NMC = spark.table(f"{schema}.Stanford_NMC_batteries_discharge")
+stanford_discharge_LFP = spark.table(f"{schema}.Bronze_Stf_LFP_discharge")
+stanford_discharge_NCA = spark.table(f"{schema}.Bronze_Stf_NCA_discharge")
+stanford_discharge_NMC = spark.table(f"{schema}.Bronze_Stf_NMC_discharge")
 
 # COMMAND ----------
 
-stanford_discharge_LFP = spark.table(f"{schema}.Stanford_LFP_batteries_discharge")
-stanford_discharge_LFP._jdf.schema().toDDL()
-
-# COMMAND ----------
-
-stanford_discharge_LFP = stanford_discharge_LFP.withColumnRenamed("Test_Time", "TestTime").withColumnRenamed("Step_Time", "StepTime")
-stanford_discharge_NCA = stanford_discharge_NCA.withColumnRenamed("Test_Time", "TestTime").withColumnRenamed("Step_Time", "StepTime")
-stanford_discharge_NMC = stanford_discharge_NMC.withColumnRenamed("Test_Time", "TestTime").withColumnRenamed("Step_Time", "StepTime")
+nasa_impedance = spark.table(f"{schema}.nasa_batteries_impedance")
 
 # COMMAND ----------
 
@@ -341,6 +339,10 @@ for colname in complex_columns:
     nasa_impedance = nasa_impedance.withColumn(colname + "_Magnitude", sqrt(expr(f"{newcolname_real} * {newcolname_real} + {newcolname_imag} * {newcolname_imag}")))\
     .withColumn(colname + "_Phase", atan2(expr(f"{newcolname_imag}"), expr(f"{newcolname_real}")))
 
+
+# COMMAND ----------
+
+nasa_impedance._jdf.schema().toDDL()
 
 # COMMAND ----------
 

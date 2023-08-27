@@ -139,10 +139,6 @@ for i in range(3, len(directories)):
 
 # COMMAND ----------
 
-batteries_impedance.columns
-
-# COMMAND ----------
-
 batteries_impedance = batteries_impedance.select(col("Sense_current").alias("SenseCurrent"), 
                            col("Battery_current").alias("BatteryCurrent"), 
                            col("Current_ratio").alias("CurrentRatio"), 

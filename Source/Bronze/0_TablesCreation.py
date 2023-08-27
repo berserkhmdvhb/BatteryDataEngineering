@@ -37,7 +37,7 @@
 # MAGIC CurrentMeasured DOUBLE, 
 # MAGIC TemperatureMeasured DOUBLE, 
 # MAGIC CurrentLoad DOUBLE, 
-# MAGIC VoltageLoad DOUBLE
+# MAGIC VoltageLoad DOUBLE,
 # MAGIC Duration DOUBLE, 
 # MAGIC Profile STRING, 
 # MAGIC Idx INT, 
@@ -53,12 +53,11 @@
 # MAGIC CREATE OR REPLACE TABLE Bronze_NASA_impedance
 # MAGIC (
 # MAGIC Id BIGINT GENERATED ALWAYS AS IDENTITY, 
-# MAGIC VoltageMeasured DOUBLE, 
-# MAGIC CurrentMeasured DOUBLE, 
-# MAGIC TemperatureMeasured DOUBLE, 
-# MAGIC CurrentLoad DOUBLE, 
-# MAGIC VoltageLoad DOUBLE
-# MAGIC Duration DOUBLE, 
+# MAGIC SenseCurrent STRING, 
+# MAGIC BatteryCurrent STRING, 
+# MAGIC CurrentRatio STRING, 
+# MAGIC BatteryImpedance STRING, 
+# MAGIC RectifiedImpedance STRING, 
 # MAGIC Profile STRING, 
 # MAGIC Idx INT, 
 # MAGIC FileName STRING, 
@@ -162,7 +161,7 @@
 # MAGIC CurrentMeasured DOUBLE, 
 # MAGIC TemperatureMeasured DOUBLE, 
 # MAGIC CurrentLoad DOUBLE, 
-# MAGIC VoltageLoad DOUBLE
+# MAGIC VoltageLoad DOUBLE,
 # MAGIC Duration DOUBLE, 
 # MAGIC Profile STRING, 
 # MAGIC Idx INT, 
@@ -178,16 +177,35 @@
 # MAGIC CREATE OR REPLACE TABLE Silver_NASA_impedance
 # MAGIC (
 # MAGIC Id BIGINT GENERATED ALWAYS AS IDENTITY, 
-# MAGIC VoltageMeasured DOUBLE, 
-# MAGIC CurrentMeasured DOUBLE, 
-# MAGIC TemperatureMeasured DOUBLE, 
-# MAGIC CurrentLoad DOUBLE, 
-# MAGIC VoltageLoad DOUBLE
-# MAGIC Duration DOUBLE, 
+# MAGIC SenseCurrent STRING, 
+# MAGIC BatteryCurrent STRING, 
+# MAGIC CurrentRatio STRING, 
+# MAGIC BatteryImpedance STRING, 
+# MAGIC RectifiedImpedance STRING, 
 # MAGIC Profile STRING, 
 # MAGIC Idx INT, 
 # MAGIC FileName STRING, 
-# MAGIC AmbientTemperature INT
+# MAGIC AmbientTemperature INT, 
+# MAGIC SenseCurrent_Real DOUBLE, 
+# MAGIC SenseCurrent_Imag DOUBLE, 
+# MAGIC SenseCurrent_Magnitude DOUBLE, 
+# MAGIC SenseCurrent_Phase DOUBLE, 
+# MAGIC BatteryCurrent_Real DOUBLE, 
+# MAGIC BatteryCurrent_Imag DOUBLE, 
+# MAGIC BatteryCurrent_Magnitude DOUBLE, 
+# MAGIC BatteryCurrent_Phase DOUBLE, 
+# MAGIC CurrentRatio_Real DOUBLE, 
+# MAGIC CurrentRatio_Imag DOUBLE, 
+# MAGIC CurrentRatio_Magnitude DOUBLE, 
+# MAGIC CurrentRatio_Phase DOUBLE, 
+# MAGIC BatteryImpedance_Real DOUBLE, 
+# MAGIC BatteryImpedance_Imag DOUBLE, 
+# MAGIC BatteryImpedance_Magnitude DOUBLE, 
+# MAGIC BatteryImpedance_Phase DOUBLE, 
+# MAGIC RectifiedImpedance_Real DOUBLE, 
+# MAGIC RectifiedImpedance_Imag DOUBLE, 
+# MAGIC RectifiedImpedance_Magnitude DOUBLE, 
+# MAGIC RectifiedImpedance_Phase DOUBLE
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
