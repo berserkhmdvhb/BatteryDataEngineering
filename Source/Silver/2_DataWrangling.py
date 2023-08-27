@@ -41,6 +41,24 @@ stanford_discharge_NMC = spark.table(f"{schema}.Bronze_Stf_NMC_discharge")
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ```
+# MAGIC selected_columns = [col(c) for c in nasa_charge.columns if c != "Id"]
+# MAGIC nasa_charge = nasa_charge.select(*selected_columns)
+# MAGIC selected_columns = [col(c) for c in nasa_discharge.columns if c != "Id"]
+# MAGIC nasa_discharge = nasa_discharge.select(*selected_columns)
+# MAGIC selected_columns = [col(c) for c in nasa_impedance.columns if c != "Id"]
+# MAGIC nasa_impedance = nasa_impedance.select(*selected_columns)
+# MAGIC selected_columns = [col(c) for c in stanford_discharge_LFP.columns if c != "Id"]
+# MAGIC stanford_discharge_LFP = stanford_discharge_LFP.select(*selected_columns)
+# MAGIC selected_columns = [col(c) for c in stanford_discharge_NCA.columns if c != "Id"]
+# MAGIC stanford_discharge_NCA = stanford_discharge_NCA.select(*selected_columns)
+# MAGIC selected_columns = [col(c) for c in stanford_discharge_NMC.columns if c != "Id"]
+# MAGIC stanford_discharge_NMC = stanford_discharge_NMC.select(*selected_columns)
+# MAGIC ```
+
+# COMMAND ----------
+
 nasa_impedance = spark.table(f"{schema}.nasa_batteries_impedance")
 
 # COMMAND ----------
@@ -215,13 +233,13 @@ def RemoveUnwantedChars(sdf: DataFrame, colname: str, unwanted_char_pattern: str
 
 # COMMAND ----------
 
-def clean_numeric_cols_prepare(sdf: DataFrame, colname: str) -> DataFrame:
+def clean_string_cols_prepare(sdf: DataFrame, colname: str) -> DataFrame:
     """
-    Cleans the input column (numeric). The allowed characters for phone numbers are digits, letter "E", and symbols `.`, `-`. 
+    Cleans the input column (number as string). The allowed characters are digits, letter "E", and symbols `.`, `-`. This function is for string columns that should only contain numbers (either integer or float).
 
         Parameters:
             sdf (pyspark.sql.dataframe.DataFrame): Spark Dataframe.
-            colname (str): Name of column to be modified (numeric).
+            colname (str): Name of column to be modified (string).
 
         Returns:
             res (pyspark.sql.dataframe.DataFrame): The input spark dataframe `sdf` but with cleaned column `colname`. 
@@ -237,19 +255,16 @@ def clean_numeric_cols_prepare(sdf: DataFrame, colname: str) -> DataFrame:
 
 # COMMAND ----------
 
-def clean_numeric_cols(sdf: DataFrame, colnames: List[str] = ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature']) -> DataFrame: 
+def clean_numeric_cols(sdf: DataFrame, colnames: List[str]) -> DataFrame: 
     """
-    Cleans the numeric columns (in our case, they are ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature']) of a given spark dataframe using the function `clean_numeric_cols_prepare`.
-
-        Target Sources: 
-            `crm`.
+    Cleans the numeric columns of a given spark dataframe using the function `clean_numeric_cols_prepare`.
 
         Parameters:
             sdf (pyspark.sql.dataframe.DataFrame): Spark Dataframe.
             colnames (str list): List of the names of the columns to be modified (numeric).
 
         Returns:
-            res (pyspark.sql.dataframe.DataFrame): The input spark dataframe `sdf` but with the columns containing phone numbers cleaned.
+            res (pyspark.sql.dataframe.DataFrame): The input spark dataframe `sdf` but with the numeric columns cleaned.
     """ 
 
     res = sdf
@@ -261,8 +276,8 @@ def clean_numeric_cols(sdf: DataFrame, colnames: List[str] = ['VoltageMeasured',
 
 # COMMAND ----------
 
-nasa_charge = clean_numeric_cols(nasa_charge, colnames = ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature'])
-nasa_discharge = clean_numeric_cols(nasa_discharge, colnames = ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature'])
+#nasa_charge = clean_numeric_cols(nasa_charge, colnames = ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature'])
+#nasa_discharge = clean_numeric_cols(nasa_discharge, colnames = ['VoltageMeasured', 'CurrentMeasured', 'TemperatureMeasured', 'CurrentCharge', 'VoltageCharge', 'Duration', 'AmbientTemperature'])
 
 # COMMAND ----------
 
@@ -278,9 +293,9 @@ stanford_discharge_NMC = RemoveUnwantedChars(sdf = stanford_discharge_NMC, colna
 
 # COMMAND ----------
 
-stanford_discharge_LFP = clean_numeric_cols(stanford_discharge_LFP, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
-stanford_discharge_NCA = clean_numeric_cols(stanford_discharge_NCA, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
-stanford_discharge_NMC = clean_numeric_cols(stanford_discharge_NMC, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
+#stanford_discharge_LFP = clean_numeric_cols(stanford_discharge_LFP, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
+#stanford_discharge_NCA = clean_numeric_cols(stanford_discharge_NCA, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
+#stanford_discharge_NMC = clean_numeric_cols(stanford_discharge_NMC, colnames = ['StepTime', 'TestTime', 'StepIndex', 'Current', 'SurfaceTemperature', 'Temperature'])
 
 # COMMAND ----------
 
@@ -342,14 +357,13 @@ for colname in complex_columns:
 
 # COMMAND ----------
 
-nasa_impedance._jdf.schema().toDDL()
-
-# COMMAND ----------
-
 # DBTITLE 1,Store as delta tables
 nasa_charge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Silver_NASA_charge')
 nasa_discharge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Silver_NASA_discharge')
 nasa_impedance.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Silver_NASA_impedance')
+
+
+# COMMAND ----------
 
 stanford_discharge_LFP.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Silver_Stf_LFP_discharge')
 stanford_discharge_NCA.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Silver_Stf_NCA_discharge')

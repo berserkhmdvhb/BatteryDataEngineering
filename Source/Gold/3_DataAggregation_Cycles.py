@@ -66,7 +66,3 @@ nasa_charge_cycle= (nasa_charge
                               first(col("AmbientTemperature").alias("CycleAmbientTemperature"))
                             )
                         )
-
-# COMMAND ----------
-
-

@@ -136,7 +136,7 @@
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE Silver_NASA_charge
 # MAGIC (
-# MAGIC Id BIGINT GENERATED ALWAYS AS IDENTITY, 
+# MAGIC Id BIGINT,
 # MAGIC VoltageMeasured DOUBLE, 
 # MAGIC CurrentMeasured DOUBLE, 
 # MAGIC TemperatureMeasured DOUBLE, 
@@ -149,14 +149,14 @@
 # MAGIC AmbientTemperature INT
 # MAGIC ) 
 # MAGIC USING delta
-# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE Silver_NASA_discharge
 # MAGIC (
-# MAGIC Id BIGINT GENERATED ALWAYS AS IDENTITY, 
+# MAGIC Id BIGINT,
 # MAGIC VoltageMeasured DOUBLE, 
 # MAGIC CurrentMeasured DOUBLE, 
 # MAGIC TemperatureMeasured DOUBLE, 
@@ -169,14 +169,14 @@
 # MAGIC AmbientTemperature INT
 # MAGIC ) 
 # MAGIC USING delta
-# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE Silver_NASA_impedance
 # MAGIC (
-# MAGIC Id BIGINT GENERATED ALWAYS AS IDENTITY, 
+# MAGIC Id BIGINT,
 # MAGIC SenseCurrent STRING, 
 # MAGIC BatteryCurrent STRING, 
 # MAGIC CurrentRatio STRING, 
@@ -206,6 +206,66 @@
 # MAGIC RectifiedImpedance_Imag DOUBLE, 
 # MAGIC RectifiedImpedance_Magnitude DOUBLE, 
 # MAGIC RectifiedImpedance_Phase DOUBLE
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Silver_Stf_LFP_discharge
+# MAGIC (
+# MAGIC Id BIGINT, 
+# MAGIC Time TIMESTAMP, 
+# MAGIC TestTime DOUBLE, 
+# MAGIC StepTime DOUBLE, 
+# MAGIC StepIndex BIGINT, 
+# MAGIC Voltage DOUBLE, 
+# MAGIC Current DOUBLE, 
+# MAGIC SurfaceTemperature DOUBLE, 
+# MAGIC Temperature INT, 
+# MAGIC Idx INT, 
+# MAGIC FileName STRING
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Silver_Stf_NCA_discharge
+# MAGIC (
+# MAGIC Id BIGINT, 
+# MAGIC Time TIMESTAMP, 
+# MAGIC TestTime DOUBLE, 
+# MAGIC StepTime DOUBLE, 
+# MAGIC StepIndex BIGINT, 
+# MAGIC Voltage DOUBLE, 
+# MAGIC Current DOUBLE, 
+# MAGIC SurfaceTemperature DOUBLE, 
+# MAGIC Temperature INT, 
+# MAGIC Idx INT, 
+# MAGIC FileName STRING
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Silver_Stf_NMC_discharge
+# MAGIC (
+# MAGIC Id BIGINT, 
+# MAGIC Time TIMESTAMP, 
+# MAGIC TestTime DOUBLE, 
+# MAGIC StepTime DOUBLE, 
+# MAGIC StepIndex BIGINT, 
+# MAGIC Voltage DOUBLE, 
+# MAGIC Current DOUBLE, 
+# MAGIC SurfaceTemperature DOUBLE, 
+# MAGIC Temperature INT, 
+# MAGIC Idx INT, 
+# MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')

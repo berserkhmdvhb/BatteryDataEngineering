@@ -263,7 +263,7 @@ LFP_df = LFP_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-d.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_Stf_LFP_discharge')
+LFP_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_Stf_LFP_discharge')
 
 # COMMAND ----------
 
@@ -329,8 +329,8 @@ for i in range(0, len(temperatures)):
 # COMMAND ----------
 
 NCA_df = NCA_df.select(col("Date_Time").alias("Time"), 
-              col("Test_Time(s)").alias("Test_Time"), 
-              col("Step_Time(s)").alias("Step_Time"),
+              col("Test_Time(s)").alias("TestTime"), 
+              col("Step_Time(s)").alias("StepTime"),
               col("Step_Index").alias("StepIndex"),
               col("Voltage(V)").alias("Voltage"), 
               col("Current(A)").alias("Current"),
@@ -409,8 +409,8 @@ for i in range(0, len(temperatures)):
 # COMMAND ----------
 
 NMC_df = NMC_df.select(col("Date_Time").alias("Time"), 
-              col("Test_Time(s)").alias("Test_Time"), 
-              col("Step_Time(s)").alias("Step_Time"),
+              col("Test_Time(s)").alias("TestTime"), 
+              col("Step_Time(s)").alias("StepTime"),
               col("Step_Index").alias("StepIndex"),
               col("Voltage(V)").alias("Voltage"), 
               col("Current(A)").alias("Current"),
