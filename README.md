@@ -40,7 +40,7 @@ classDef viewBlock fill:#85C1E9
 classDef sparkdfBlock fill:#7FFFD4
 classDef title fill:#FFFFFF
 A["<img src='https://cdn3.iconfinder.com/data/icons/bigdata-1/128/bigdata-Color-16-512.png'; width='170' />" <br/>ON-PREMISE Sources: <br/>]
-A --> I{"<img src='https://cdn3.iconfinder.com/data/icons/server-rack/64/cloud-512.png'; width='130' />" <br/> Ingestion}
+A --> I{"![aa](https://cdn3.iconfinder.com/data/icons/server-rack/64/cloud-512.png)" <br/> Ingestion}
 I --> B1[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 1)]
 I --> B2[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 2)]
 I --> B3[("<img src='https://delta.io/static/3bd8fea55ff57287371f4714232cd4ef/f3063/delta-lake-logo.png'; width='40' />" <br/> Bronze Table 3)]
