@@ -181,9 +181,9 @@ batteries_discharge = batteries_discharge.select(col("Voltage_measured").alias("
 
 # COMMAND ----------
 
-batteries_impedance.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.NASA_batteries_impedance')
-batteries_charge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.NASA_batteries_charge')
-batteries_discharge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.NASA_batteries_discharge')
+batteries_impedance.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_NASA_impedance')
+batteries_charge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_NASA_charge')
+batteries_discharge.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_NASA_discharge')
 
 # COMMAND ----------
 
@@ -254,8 +254,8 @@ for i in range(0, len(temperatures)):
 # COMMAND ----------
 
 LFP_df = LFP_df.select(col("Date_Time").alias("Time"), 
-              col("Test_Time(s)").alias("Test_Time"), 
-              col("Step_Time(s)").alias("Step_Time"),
+              col("Test_Time(s)").alias("TestTime"), 
+              col("Step_Time(s)").alias("StepTime"),
               col("Step_Index").alias("StepIndex"),
               col("Voltage(V)").alias("Voltage"), 
               col("Current(A)").alias("Current"),
@@ -267,7 +267,7 @@ LFP_df = LFP_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-d.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_LFP_batteries_discharge')
+d.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_Stf_LFP_discharge')
 
 # COMMAND ----------
 
@@ -346,7 +346,7 @@ NCA_df = NCA_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-NCA_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NCA_batteries_discharge')
+NCA_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_Stf_NCA_discharge')
 
 # COMMAND ----------
 
@@ -426,34 +426,34 @@ NMC_df = NMC_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NMC_batteries_discharge')
+NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Bronze_Stf_NMC_discharge')
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.NASA_batteries_impedance
+# MAGIC OPTIMIZE LION.Bronze_NASA_impedance
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.NASA_batteries_charge
+# MAGIC OPTIMIZE LION.Bronze_NASA_charge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.NASA_batteries_discharge
+# MAGIC OPTIMIZE LION.Bronze_NASA_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.Stanford_LFP_batteries_discharge
+# MAGIC OPTIMIZE LION.Bronze_Stf_LFP_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.Stanford_NCA_batteries_discharge
+# MAGIC OPTIMIZE LION.Bronze_Stf_NCA_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE LION.Stanford_NMC_batteries_discharge
+# MAGIC OPTIMIZE LION.Bronze_Stf_NMC_discharge
