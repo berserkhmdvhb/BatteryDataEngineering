@@ -27,7 +27,6 @@ schema = "LION"
 
 # MAGIC %sql
 # MAGIC --CREATE SCHEMA LION
-# MAGIC
 
 # COMMAND ----------
 
@@ -268,7 +267,11 @@ LFP_df = LFP_df.select(col("Date_Time").alias("Time"),
 
 # COMMAND ----------
 
-LFP_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_LFP_batteries_discharge')
+d.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_LFP_batteries_discharge')
+
+# COMMAND ----------
+
+del LFP_df
 
 # COMMAND ----------
 
@@ -344,6 +347,10 @@ NCA_df = NCA_df.select(col("Date_Time").alias("Time"),
 # COMMAND ----------
 
 NCA_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_NCA_batteries_discharge')
+
+# COMMAND ----------
+
+del NCA_df
 
 # COMMAND ----------
 
@@ -424,29 +431,29 @@ NMC_df.write.format('delta').mode('overwrite').saveAsTable(f'{schema}.Stanford_N
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.NASA_batteries_impedance
+# MAGIC OPTIMIZE LION.NASA_batteries_impedance
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.NASA_batteries_charge
+# MAGIC OPTIMIZE LION.NASA_batteries_charge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.NASA_batteries_discharge
+# MAGIC OPTIMIZE LION.NASA_batteries_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.Stanford_LFP_batteries_discharge
+# MAGIC OPTIMIZE LION.Stanford_LFP_batteries_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.Stanford_NCA_batteries_discharge
+# MAGIC OPTIMIZE LION.Stanford_NCA_batteries_discharge
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC OPTIMIZE TABLE LION.Stanford_NMC_batteries_discharge
+# MAGIC OPTIMIZE LION.Stanford_NMC_batteries_discharge

@@ -10,25 +10,17 @@ schema = "LION"
 
 # COMMAND ----------
 
-batteries_charge = spark.table(f"{schema}.nasa_batteries_charge")
-batteries_discharge = spark.table(f"{schema}.nasa_batteries_discharge")
-batteries_impedance = spark.table(f"{schema}.nasa_batteries_impedance")
+nasa_charge = spark.table(f"{schema}.nasa_batteries_charge")
+nasa_discharge = spark.table(f"{schema}.nasa_batteries_discharge")
+nasa_impedance = spark.table(f"{schema}.nasa_batteries_impedance")
+
+stanford_discharge_LFP = spark.table(f"{schema}.Stanford_LFP_batteries_discharge")
+stanford_discharge_NCA = spark.table(f"{schema}.Stanford_NCA_batteries_discharge")
+stanford_discharge_NMC = spark.table(f"{schema}.Stanford_NMC_batteries_discharge")
 
 # COMMAND ----------
 
-batteries_charge.display()
-
-# COMMAND ----------
-
-batteries_impedance.display()
-
-# COMMAND ----------
-
-batteries_discharge.printSchema()
-
-# COMMAND ----------
-
-batteries_charge.printSchema()
+batteris_charge_cycle = 
 
 # COMMAND ----------
 
