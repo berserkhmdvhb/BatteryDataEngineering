@@ -1,4 +1,6 @@
 # Stanford Fast-Charging Datasets
+
+[Refernce](https://onorilab.stanford.edu/products/code-and-data-set)
 Experimental data of lithium-ion batteries under galvanostatic discharge tests at different rates and temperatures of operation. 
 Researchers from Stanford and MIT have published two relatively large datasets including cycling data of commercial 1.1Ah 18650 LFP/Graphite cells. 
 These datasets are useful in particular for applying machine learning methods. 
