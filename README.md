@@ -4,9 +4,14 @@ The datasets are stored in [Github repo](https://github.com/berserkhmdvhb/Batter
 Uinsg Databricks, a pipeline is created to ingest data from the Github repo to cloud, then data is cleaned and wrangled, also additional features were added. Finally, data were aggregated to each cycle
 ## Steps
 
-1. Import different data sets and provide metadata and description of the datasets.
-2. Ingest data into Databricks cloud
+1. **Ingest Data to Cloud:**
+   For NASA, CSV files of all batteries were stored in 3 dataframes associated with 3 profiles, which are charge, discharge, and impedance. The metadata CSV was usefor automatic detection profile of each file. For Stanford, data were converted from XLSX to CSV using Spark, and then stored in 3 dataframes associated with 3 manufacturers. Also 3 different temperatures used for each file are stored as metadata. All data are stored as delta tables. Using Medallion Architecture, both data and code are organized. Raw tables are stored as BRONZE tables.
 
+3. **Data Wrangling:** Numeric and string columns are cleaned. Missing and `NULL` values are handled. Some transformations and corrections were made to temperatures. The impedance dataframe contain complex numbers, which are handled by extracting imaginary and real parts, and also to enrich data with maginute and phase for all the complex numbers. All cleaned tables are stored as SILVER tables.
+
+4. **Data Aggregation:** Using each battery data (temperature, current, voltage, ...), the statistical summary of each battery cycle (charge, discharge) are extracted and stored as GOLD tables.
+
+Finally, SQL queries (defined here) are defined to provide dashboards in Databricks.
 
 ## Data Samples
 
