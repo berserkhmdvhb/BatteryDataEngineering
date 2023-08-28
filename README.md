@@ -13,6 +13,12 @@ Uinsg Databricks, a pipeline is created to ingest data from the Github repo to c
 
 Finally, SQL queries (defined here) are defined to provide dashboards in Databricks.
 
+
+## Dashboard
+
+<img width="1806" alt="Screenshot 2023-08-28 172600" src="https://github.com/berserkhmdvhb/BatteryDataEngineering/assets/48640037/671fcdfd-347a-44de-8889-8fb5bce1f086">
+
+
 ## Data Samples
 
 ### NASA
