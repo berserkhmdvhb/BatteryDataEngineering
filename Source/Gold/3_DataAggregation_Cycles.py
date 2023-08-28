@@ -4,7 +4,7 @@
 
 # COMMAND ----------
 
-from pyspark.sql.functions import col, median, sum, first, max, min, unix_timestamp
+from pyspark.sql.functions import col, median, sum, first, max, min, unix_timestamp, lit
 
 from pyspark.sql.types import ArrayType, FloatType, DoubleType, StringType, BooleanType, IntegerType, LongType, TimestampType, DateType
 from pyspark.sql import DataFrame, Row
@@ -43,6 +43,12 @@ nasa_impedance = spark.table(f"{schema}.Silver_NASA_impedance")
 stanford_discharge_LFP = spark.table(f"{schema}.Silver_Stf_LFP_discharge")
 stanford_discharge_NCA = spark.table(f"{schema}.Silver_Stf_NCA_discharge")
 stanford_discharge_NMC = spark.table(f"{schema}.Silver_Stf_NMC_discharge")
+
+# COMMAND ----------
+
+stanford_discharge_LFP = stanford_discharge_LFP.withColumn("Manufacture", lit("LFP"))
+stanford_discharge_NCA = stanford_discharge_NCA.withColumn("Manufacture", lit("NCA"))
+stanford_discharge_NMC = stanford_discharge_NMC.withColumn("Manufacture", lit("NMC"))
 
 # COMMAND ----------
 
@@ -86,7 +92,7 @@ stanford_discharge_LFP = (stanford_discharge_LFP
                                      median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
                                      first(col("Temperature")).alias("CycleStaticTemperatue"),
-                                     first(col("Profile")).alias("Profile")
+                                     first(col("Manufacture")).alias("Manufacture")
                                     )
                                 )    
 
@@ -99,7 +105,7 @@ stanford_discharge_NCA = (stanford_discharge_NCA
                                      median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
                                      first(col("Temperature")).alias("CycleStaticTemperatue"),
-                                     first(col("Profile")).alias("Profile")
+                                     first(col("Manufacture")).alias("Manufacture")
                                     )
                                 )    
 stanford_discharge_NMC = (stanford_discharge_NMC
@@ -111,7 +117,7 @@ stanford_discharge_NMC = (stanford_discharge_NMC
                                      median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
                                      first(col("Temperature")).alias("CycleStaticTemperatue"),
-                                     first(col("Profile")).alias("Profile")
+                                     first(col("Manufacture")).alias("Manufacture")
                                     )
                                 )                                            
 

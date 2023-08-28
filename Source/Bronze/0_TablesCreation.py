@@ -220,8 +220,7 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING,
-# MAGIC Profile STRING
+# MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -241,8 +240,7 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING,
-# MAGIC Profile STRING
+# MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -262,8 +260,7 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING,
-# MAGIC Profile STRING
+# MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -328,7 +325,7 @@
 # MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
 # MAGIC CycleStaticTemperatue INT,
-# MAGIC Profile STRING
+# MAGIC Manufacture STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -346,7 +343,7 @@
 # MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
 # MAGIC CycleStaticTemperatue INT,
-# MAGIC Profile STRING
+# MAGIC Manufacture STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -364,7 +361,7 @@
 # MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
 # MAGIC CycleStaticTemperatue INT,
-# MAGIC Profile STRING
+# MAGIC Manufacture STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
