@@ -220,7 +220,8 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING
+# MAGIC FileName STRING,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -240,7 +241,8 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING
+# MAGIC FileName STRING,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -260,7 +262,8 @@
 # MAGIC SurfaceTemperature DOUBLE, 
 # MAGIC Temperature INT, 
 # MAGIC Idx INT, 
-# MAGIC FileName STRING
+# MAGIC FileName STRING,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
@@ -281,10 +284,12 @@
 # MAGIC CycleVoltage_Median DOUBLE, 
 # MAGIC CycleChargeCurrent_Median DOUBLE, 
 # MAGIC CycleChargeVoltage_Median DOUBLE, 
-# MAGIC CycleTemperatue_Max DOUBLE, 
 # MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Median DOUBLE, 
 # MAGIC CycleDuration FLOAT, 
-# MAGIC CycleAmbientTemperature INT
+# MAGIC CycleAmbientTemperature INT,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -300,10 +305,12 @@
 # MAGIC CycleVoltage_Median DOUBLE, 
 # MAGIC CycleLoadCurrent_Median DOUBLE, 
 # MAGIC CycleLoadVoltage_Median DOUBLE, 
-# MAGIC CycleTemperatue_Max DOUBLE, 
 # MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
-# MAGIC CycleAmbientTemperature INT
+# MAGIC CycleAmbientTemperature INT,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -316,9 +323,12 @@
 # MAGIC CycleNumber INT, 
 # MAGIC CycleCurrent_Median DOUBLE, 
 # MAGIC CycleVoltage_Median DOUBLE, 
-# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
-# MAGIC CycleStaticTemperatue INT
+# MAGIC CycleStaticTemperatue INT,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -331,9 +341,12 @@
 # MAGIC CycleNumber INT, 
 # MAGIC CycleCurrent_Median DOUBLE, 
 # MAGIC CycleVoltage_Median DOUBLE, 
-# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
-# MAGIC CycleStaticTemperatue INT
+# MAGIC CycleStaticTemperatue INT,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
@@ -346,9 +359,12 @@
 # MAGIC CycleNumber INT, 
 # MAGIC CycleCurrent_Median DOUBLE, 
 # MAGIC CycleVoltage_Median DOUBLE, 
-# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Median DOUBLE,
 # MAGIC CycleDuration FLOAT, 
-# MAGIC CycleStaticTemperatue INT
+# MAGIC CycleStaticTemperatue INT,
+# MAGIC Profile STRING
 # MAGIC ) 
 # MAGIC USING delta
 # MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')

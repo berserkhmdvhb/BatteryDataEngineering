@@ -14,8 +14,9 @@ from pyspark import SparkFiles
 
 # COMMAND ----------
 
-from pyspark.sql.functions import col, lit
+from pyspark.sql.functions import col, lit, dense_rank, when
 from pyspark.sql.types import ArrayType, StringType, BooleanType, IntegerType, FloatType, LongType, StructField, StructType
+from pyspark.sql.window import Window
 from pyspark.sql import DataFrame, Row
 import sys
 
@@ -174,6 +175,22 @@ batteries_discharge = batteries_discharge.select(col("Voltage_measured").alias("
                            col("ambient_temperature").alias("AmbientTemperature")
                            )
 
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ```
+# MAGIC distinct_values = batteries_charge.select("Idx").distinct().orderBy(col("Idx"))
+# MAGIC distinct_values = distinct_values.withColumn("MappedIdx", dense_rank().over(windowSpec))
+# MAGIC OldIdx = [row.Idx for row in distinct_values.select('Idx').collect()]
+# MAGIC NewIdx = [row.MappedIdx for row in distinct_values.select('MappedIdx').collect()]
+# MAGIC MapDict = {}
+# MAGIC for key, value in zip(OldIdx, NewIdx):
+# MAGIC     MapDict[key] = value
+# MAGIC mapping_df = spark.createDataFrame([(k, v) for k, v in MapDict.items()], ["OldIdx", "NewIdx"])
+# MAGIC result_df = batteries_charge.join(mapping_df, batteries_charge["Idx"] == mapping_df["OldIdx"], "left_outer")
+# MAGIC test = result_df.withColumn("Idx", when(mapping_df["NewIdx"].isNotNull(), mapping_df["NewIdx"]).otherwise(col("Idx")))
+# MAGIC ```
 
 # COMMAND ----------
 

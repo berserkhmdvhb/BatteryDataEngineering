@@ -54,9 +54,11 @@ nasa_discharge = (nasa_discharge
                               median("CurrentLoad").alias("CycleLoadCurrent_Median"), 
                               median("VoltageLoad").alias("CycleLoadVoltage_Median"), 
                               max("TemperatureMeasured").alias("CycleTemperatue_Max"), 
-                              min("TemperatureMeasured").alias("CycleTemperatue_Min"), 
+                              min("TemperatureMeasured").alias("CycleTemperatue_Min"),
+                              median("TemperatureMeasured").alias("CycleTemperatue_Median"),  
                               (max("Duration")/3600).cast(FloatType()).alias("CycleDuration"),
-                              first(col("AmbientTemperature")).alias("CycleAmbientTemperature")
+                              first(col("AmbientTemperature")).alias("CycleAmbientTemperature"),
+                              first(col("Profile")).alias("Profile")
                             )
                         )
 nasa_charge = (nasa_charge
@@ -68,8 +70,10 @@ nasa_charge = (nasa_charge
                               median("VoltageCharge").alias("CycleChargeVoltage_Median"), 
                               max("TemperatureMeasured").alias("CycleTemperatue_Max"), 
                               min("TemperatureMeasured").alias("CycleTemperatue_Min"), 
+                              median("TemperatureMeasured").alias("CycleTemperatue_Median"), 
                               (max("Duration")/3600).cast(FloatType()).alias("CycleDuration"),
-                              first(col("AmbientTemperature")).alias("CycleAmbientTemperature")
+                              first(col("AmbientTemperature")).alias("CycleAmbientTemperature"),
+                              first(col("Profile")).alias("Profile")
                             )
                     )
 
@@ -77,9 +81,12 @@ stanford_discharge_LFP = (stanford_discharge_LFP
                                 .groupBy(col("Idx").alias("CycleNumber"))
                                 .agg(median("Current").alias("CycleCurrent_Median"), 
                                      median("Voltage").alias("CycleVoltage_Median"), 
-                                     sum("SurfaceTemperature").alias("CycleSurfaceTemperatue_Total"), 
+                                     max("SurfaceTemperature").alias("CycleTemperatue_Max"), 
+                                     min("SurfaceTemperature").alias("CycleTemperatue_Min"), 
+                                     median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
-                                     first(col("Temperature")).alias("CycleStaticTemperatue")
+                                     first(col("Temperature")).alias("CycleStaticTemperatue"),
+                                     first(col("Profile")).alias("Profile")
                                     )
                                 )    
 
@@ -87,18 +94,24 @@ stanford_discharge_NCA = (stanford_discharge_NCA
                                 .groupBy(col("Idx").alias("CycleNumber"))
                                 .agg(median("Current").alias("CycleCurrent_Median"), 
                                      median("Voltage").alias("CycleVoltage_Median"), 
-                                     sum("SurfaceTemperature").alias("CycleSurfaceTemperatue_Total"), 
+                                     max("SurfaceTemperature").alias("CycleTemperatue_Max"), 
+                                     min("SurfaceTemperature").alias("CycleTemperatue_Min"), 
+                                     median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
-                                     first(col("Temperature")).alias("CycleStaticTemperatue")
+                                     first(col("Temperature")).alias("CycleStaticTemperatue"),
+                                     first(col("Profile")).alias("Profile")
                                     )
                                 )    
 stanford_discharge_NMC = (stanford_discharge_NMC
                                 .groupBy(col("Idx").alias("CycleNumber"))
                                 .agg(median("Current").alias("CycleCurrent_Median"), 
                                      median("Voltage").alias("CycleVoltage_Median"), 
-                                     sum("SurfaceTemperature").alias("CycleSurfaceTemperatue_Total"), 
+                                     max("SurfaceTemperature").alias("CycleTemperatue_Max"), 
+                                     min("SurfaceTemperature").alias("CycleTemperatue_Min"), 
+                                     median("SurfaceTemperature").alias("CycleTemperatue_Median"), 
                                      ((max(unix_timestamp(col("Time"))) - min(unix_timestamp(col("Time"))))/3600).cast(FloatType()).alias("CycleDuration"),
-                                     first(col("Temperature")).alias("CycleStaticTemperatue")
+                                     first(col("Temperature")).alias("CycleStaticTemperatue"),
+                                     first(col("Profile")).alias("Profile")
                                     )
                                 )                                            
 
