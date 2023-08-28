@@ -1,4 +1,7 @@
 # BatteryDataEngineering <img src="logo2.png" align="right" style="width: 15%;"/>
+This repo is dedicated to processing and engineering li-ion battery datasets. The metatdata for these sources can be found in [here](https://github.com/berserkhmdvhb/BatteryDataEngineering/tree/main/Metadata)
+The datasets are stored in [Github repo](https://github.com/berserkhmdvhb/BatteryDatasets).
+Uinsg Databricks, a pipeline is created to ingest data from the Github repo to cloud, then data is cleaned and wrangled, also additional features were added. Finally, data were aggregated to each cycle
 ## Steps
 
 1. Import different data sets and provide metadata and description of the datasets.
