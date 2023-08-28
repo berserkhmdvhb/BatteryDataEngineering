@@ -14,7 +14,7 @@ Uinsg Databricks, a pipeline is created to ingest data from the Github repo to c
 
 4. **Data Aggregation:** Using each battery data (temperature, current, voltage, ...), the statistical summary of each battery cycle (charge, discharge) are extracted and stored as GOLD tables.
 
-Finally, SQL queries (defined here) are defined to provide dashboards in Databricks.
+Finally, SQL queries (defined [here](https://github.com/berserkhmdvhb/BatteryDataEngineering/blob/main/Source/SQL_queries.md)) are defined to provide dashboards in Databricks.
 
 
 ## Visualizations
