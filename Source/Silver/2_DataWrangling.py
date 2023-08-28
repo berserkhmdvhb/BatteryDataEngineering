@@ -59,10 +59,6 @@ stanford_discharge_NMC = spark.table(f"{schema}.Bronze_Stf_NMC_discharge")
 
 # COMMAND ----------
 
-nasa_impedance = spark.table(f"{schema}.nasa_batteries_impedance")
-
-# COMMAND ----------
-
 #nasa_discharge._jdf.schema().toDDL()
 
 # COMMAND ----------
@@ -351,6 +347,7 @@ for colname in complex_columns:
     nasa_impedance = RemoveUnwantedChars(sdf = nasa_impedance, colname = colname, unwanted_char_pattern = unwanted_char_pattern)
     nasa_impedance = nasa_impedance.withColumn(newcolname_real, parse_complex_real_part_udf(colname).cast(DoubleType()))
     nasa_impedance = nasa_impedance.withColumn(newcolname_imag, parse_complex_imag_part_udf(colname).cast(DoubleType()))
+    nasa_impedance = nasa_impedance.drop(colname)
     nasa_impedance = nasa_impedance.withColumn(colname + "_Magnitude", sqrt(expr(f"{newcolname_real} * {newcolname_real} + {newcolname_imag} * {newcolname_imag}")))\
     .withColumn(colname + "_Phase", atan2(expr(f"{newcolname_imag}"), expr(f"{newcolname_real}")))
 

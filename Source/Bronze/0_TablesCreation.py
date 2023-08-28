@@ -176,12 +176,7 @@
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE Silver_NASA_impedance
 # MAGIC (
-# MAGIC Id BIGINT,
-# MAGIC SenseCurrent STRING, 
-# MAGIC BatteryCurrent STRING, 
-# MAGIC CurrentRatio STRING, 
-# MAGIC BatteryImpedance STRING, 
-# MAGIC RectifiedImpedance STRING, 
+# MAGIC Id BIGINT, 
 # MAGIC Profile STRING, 
 # MAGIC Idx INT, 
 # MAGIC FileName STRING, 
@@ -228,7 +223,7 @@
 # MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
-# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
 
 # COMMAND ----------
 
@@ -248,7 +243,7 @@
 # MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
-# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
 
 # COMMAND ----------
 
@@ -268,4 +263,92 @@
 # MAGIC FileName STRING
 # MAGIC ) 
 # MAGIC USING delta
-# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'bronze')
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'silver')
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Gold
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Gold_NASA_charge_cycles
+# MAGIC (
+# MAGIC CycleNumber INT, 
+# MAGIC CycleCurrent_Median DOUBLE, 
+# MAGIC CycleCurrent_Total DOUBLE, 
+# MAGIC CycleVoltage_Median DOUBLE, 
+# MAGIC CycleChargeCurrent_Median DOUBLE, 
+# MAGIC CycleChargeVoltage_Median DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleDuration FLOAT, 
+# MAGIC CycleAmbientTemperature INT
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Gold_NASA_discharge_cycles
+# MAGIC (
+# MAGIC CycleNumber INT, 
+# MAGIC CycleCurrent_Median DOUBLE, 
+# MAGIC CycleCurrent_Total DOUBLE, 
+# MAGIC CycleVoltage_Median DOUBLE, 
+# MAGIC CycleLoadCurrent_Median DOUBLE, 
+# MAGIC CycleLoadVoltage_Median DOUBLE, 
+# MAGIC CycleTemperatue_Max DOUBLE, 
+# MAGIC CycleTemperatue_Min DOUBLE, 
+# MAGIC CycleDuration FLOAT, 
+# MAGIC CycleAmbientTemperature INT
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Gold_Stf_LFP_discharge_cycles
+# MAGIC (
+# MAGIC CycleNumber INT, 
+# MAGIC CycleCurrent_Median DOUBLE, 
+# MAGIC CycleVoltage_Median DOUBLE, 
+# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleDuration FLOAT, 
+# MAGIC CycleStaticTemperatue INT
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Gold_Stf_NCA_discharge_cycles
+# MAGIC (
+# MAGIC CycleNumber INT, 
+# MAGIC CycleCurrent_Median DOUBLE, 
+# MAGIC CycleVoltage_Median DOUBLE, 
+# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleDuration FLOAT, 
+# MAGIC CycleStaticTemperatue INT
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE Gold_Stf_NMC_discharge_cycles
+# MAGIC (
+# MAGIC CycleNumber INT, 
+# MAGIC CycleCurrent_Median DOUBLE, 
+# MAGIC CycleVoltage_Median DOUBLE, 
+# MAGIC CycleSurfaceTemperatue_Total DOUBLE, 
+# MAGIC CycleDuration FLOAT, 
+# MAGIC CycleStaticTemperatue INT
+# MAGIC ) 
+# MAGIC USING delta
+# MAGIC TBLPROPERTIES ('delta.enableChangeDataFeed' = 'true', 'quality' = 'gold')
