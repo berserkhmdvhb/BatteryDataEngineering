@@ -1,0 +1,31 @@
+graph LR;
+classDef silverBlock fill:#C0C0C0,stroke:#000000,stroke-width:2px
+classDef bronzeBlock fill:#CD7F32,stroke:#000000,stroke-width:2px
+classDef goldBlock fill:#FFD700,stroke:#000000,stroke-width:2px
+classDef dataBlock fill:#85C1E9,stroke:#000000,stroke-width:2px
+classDef deltaBlock fill:#85C1E9,stroke:#000000,stroke-width:2px
+classDef viewBlock fill:#85C1E9
+classDef sparkdfBlock fill:#7FFFD4
+classDef title fill:#FFFFFF
+A["<img src='https://cdn0.iconfinder.com/data/icons/survival-soothe-series/256/Extra_Batteries-1024.png'; width='170' />" <br/>Import Data  Sources to Github]
+A --> I{"<img src='https://cdn3.iconfinder.com/data/icons/server-rack/64/cloud-512.png'; width='130' />" <br/> Ingestion as <br/> Delta Tables}
+I --> E{"<img src='https://cdn3.iconfinder.com/data/icons/big-data-2-4/504/Data-cleaning-broom-dusting-delete-256.png'; width='10' />" <br/> Data Wrangling}
+E --> SBI{"<img src='https://cdn2.iconfinder.com/data/icons/togaf-business-architecture-modeling-and-outputs/512/Class_Models-2-1024.png'; width='130' />" <br/> Data Aggregation}
+SBI--> GEMS[("<img src='https://cdn3.iconfinder.com/data/icons/electric-vehicle-47/512/life_cycle_cycle_battery_power_electric_charge_renewable-1024.png'; width='80' />" <br/> Gold Table <br/> Battery Cycles)]
+class T title
+class S1 silverBlock
+class S2 silverBlock
+class S3 silverBlock
+class S4 silverBlock
+class S5 silverBlock
+class S6 silverBlock
+class B1 bronzeBlock
+class B2 bronzeBlock
+class B3 bronzeBlock
+class TEMP dataBlock
+class X sparkdfBlock
+class Y sparkdfBlock
+class Z viewBlock
+class SD sparkdfBlock
+class Q goldBlock
+class GEMS goldBlock;
