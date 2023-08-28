@@ -1,4 +1,4 @@
-# BatteryDataEngineering <img src="logo2.png" align="right" style="width: 5%;"/>
+# BatteryDataEngineering <img src="logo2.png" align="right" style="width: 15%;"/>
 ## Steps
 
 1. Import different data sets and provide metadata and description of the datasets.
