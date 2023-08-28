@@ -2,6 +2,9 @@
 This repo is dedicated to processing and engineering li-ion battery datasets. The metatdata for these sources can be found in [here](https://github.com/berserkhmdvhb/BatteryDataEngineering/tree/main/Metadata)
 The datasets are stored in [Github repo](https://github.com/berserkhmdvhb/BatteryDatasets).
 Uinsg Databricks, a pipeline is created to ingest data from the Github repo to cloud, then data is cleaned and wrangled, also additional features were added. Finally, data were aggregated to each cycle
+
+# Pipeline
+
 ## Steps
 
 1. **Ingest Data to Cloud:**
@@ -12,6 +15,17 @@ Uinsg Databricks, a pipeline is created to ingest data from the Github repo to c
 4. **Data Aggregation:** Using each battery data (temperature, current, voltage, ...), the statistical summary of each battery cycle (charge, discharge) are extracted and stored as GOLD tables.
 
 Finally, SQL queries (defined here) are defined to provide dashboards in Databricks.
+
+
+## Visualizations
+
+### Diagram
+
+![mermaid-diagram-2023-08-28-154209](https://github.com/berserkhmdvhb/BatteryDataEngineering/assets/48640037/432b38d3-958b-4e34-a041-2993dc372d82)
+
+### DAG
+
+<img width="1443" alt="Screenshot 2023-08-28 174348" src="https://github.com/berserkhmdvhb/BatteryDataEngineering/assets/48640037/fadc4d60-f7f1-4968-abce-90ca7cabfccc">
 
 
 ## Dashboard
