@@ -1,4 +1,9 @@
-![ETL](https://img.shields.io/badge/ETL-Extract--Transform--Load-orange)
+![Data Engineering](https://img.shields.io/badge/Data%20Engineering-grey) 
+![ETL](https://img.shields.io/badge/ETL-blue) 
+![Dashboard](https://img.shields.io/badge/Dashboard-blue) 
+![Data Pipeline](https://img.shields.io/badge/Data%20Pipeline-blue) 
+![Analytics](https://img.shields.io/badge/Analytics-blue)
+
 # BatteryDataEngineering <img src="logo2.png" align="right" style="width: 15%;"/>
 This repo is dedicated to processing and engineering li-ion battery datasets. The metatdata for these sources can be found in [here](https://github.com/berserkhmdvhb/BatteryDataEngineering/tree/main/Metadata)
 The datasets are stored in [Github repo](https://github.com/berserkhmdvhb/BatteryDatasets).
