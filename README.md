@@ -1,4 +1,4 @@
-![Data Engineering](https://img.shields.io/badge/Data%20Engineering-%20ETL%20|%20Dashboard%20|%20Data%20Pipeline%20|%20Analytics-greyblue)
+![Data Engineering](https://img.shields.io/badge/Data%20Engineering-%20ETL%20|%20Dashboard%20|%20Data%20Pipeline%20|%20Analytics-blue)
 
 
 # BatteryDataEngineering <img src="logo2.png" align="right" style="width: 15%;"/>
